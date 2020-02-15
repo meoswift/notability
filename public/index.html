@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="script.js" charset="utf-8" defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>guggle keep</title>
+  </head>
+  <body>
+    <div id="body-box">
+      <!-- sidebar tabs -->
+      <div id="sidebar">
+        <h2 id="logo">💡guggle keep :)</h2><br>
+        <!-- notes tab -->
+        <div><button id="notes">Notes</button><hr></div>
+        <small class="text-muted">Labels</small>
+        <div>
+          <!-- labels tab -->
+          <button id="labels">Edit labels</button><hr>
+          <!-- archive tab -->
+          <button id="archive">Archive</button>
+        </div>
+      </div>
+      <!-- main for each tab -->
+      <div id="main">
+          <!-- notes tab main -->
+          <div id="notes-main">
+              <form id="note-form">
+                <div class="shadow bg-white rounded">
+                  <input placeholder="Title" data-new-title><br>
+                  <textarea id="note-box" placeholder="Take a note..." data-new-note></textarea>
+                  <button id="add">Add</button>
+                </div>
+              </form>
+            <br>
+            <div class="card-columns" id="notes-area"></div>
+          </div>
+          <!-- labels tab main -->
+          <div id="labels-main">
+            label
+          </div>
+          <!-- archive tab main -->
+          <div id="archive-main">
+            archive
+          </div>
+        </div>
+      </div>
+
+      <!-- TEMPLATES for cards -->
+      <template id="note-template">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><b></b></h5>
+            <p class="card-text"></p>
+            <button id="close"><small class="text-muted delete">🗑</small>
+            </button>
+          </div>
+        </div>
+      </template>
+  </body>
+</html>

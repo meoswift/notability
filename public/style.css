@@ -1,0 +1,122 @@
+body {
+  margin: 2% 0 0 2%;
+}
+
+#body-box {
+  display: flex;
+  flex-direction: row;
+}
+
+#logo {
+  text-align: center;
+}
+
+#logo:hover {
+  color: #F1AF0D;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#sidebar {
+  display: flex;
+  margin-top: 5vh;
+  width: 20%;
+  flex-direction: column;
+}
+
+#sidebar div {
+  cursor: pointer;
+  padding-bottom: 3vh;
+}
+
+small {
+  padding-left: 10px;
+  padding-bottom: 2vh;s
+}
+
+button {
+  border: none;
+  padding-left: 10px;
+  width: 100%;
+  height: 7vh;
+  text-align: left;
+}
+
+button:hover {
+  background-color: rgba(164, 166, 168, 0.2);
+  border-radius: 10px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.clicked, .clicked:hover {
+  background-color: #FEEFC3;
+  border-radius: 10px;
+}
+
+#main {
+  margin-top: 5vh;
+  margin-left: 10%;
+  width: 80%;
+}
+
+.shadow {
+  padding: 10px;
+  border-radius: 10px !important;
+  border: 2px solid rgb(211, 212, 214);
+  box-shadow: 1px 2px 7px rgba(131, 132, 133, 0.3) !important;
+  margin: 0 10%;
+  width: 40vw;
+}
+
+input::placeholder, textarea::placeholder {
+  font-weight: 550;
+  color: rgb(149, 151, 151);
+}
+
+textarea::placeholder {
+  font-size: 90%;
+}
+
+input,textarea {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+}
+
+#input-text {
+  outline: none;
+  font-weight: 550;
+}
+
+#add {
+  width: 3vw !important;
+  margin-left: 35vw;
+  padding: 0;
+  height: 100%;
+  color: rgb(149, 151, 151);
+}
+
+#add:hover {
+  color: black;
+  background-color: white;
+}
+
+.card-columns {
+  display: inline-block;
+}
+
+.card {
+  display: inline-block;
+  border-radius: 10px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
