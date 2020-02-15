@@ -2,6 +2,18 @@ body {
   margin: 2% 0 0 2%;
 }
 
+#navbar {
+  background-color: #F1AF0D;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 5vh;
+  box-shadow: 1px 1px 5px rgba(111, 112, 112, 0.3);
+}
+
 #body-box {
   display: flex;
   flex-direction: row;
@@ -80,6 +92,11 @@ textarea::placeholder {
   font-size: 90%;
 }
 
+input {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 input,textarea {
   border: none;
   outline: none;
@@ -87,14 +104,9 @@ input,textarea {
   height: 100%;
 }
 
-#input-text {
-  outline: none;
-  font-weight: 550;
-}
-
 #add {
   width: 3vw !important;
-  margin-left: 35vw;
+  margin-left: 90%;
   padding: 0;
   height: 100%;
   color: rgb(149, 151, 151);
