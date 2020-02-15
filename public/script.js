@@ -109,7 +109,7 @@ function renderNotes() {
   notesList.forEach(note => {
       const noteElement = document.importNode(noteTemplate.content, true)
       const noteCard = noteElement.querySelector(".card")
-      const noteTitle = noteElement.querySelector(".card-title b")
+      const noteTitle = noteElement.querySelector(".card-title")
       const noteContent = noteElement.querySelector(".card-text")
 
       noteCard.id = note.id
