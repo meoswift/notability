@@ -70,6 +70,7 @@ button:focus {
 }
 
 #main {
+  width: 80vw;
   margin-top: 5vh;
   margin-left: 22%;
 }

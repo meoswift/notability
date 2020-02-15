@@ -12,7 +12,7 @@ const logo = document.querySelector("#logo")
 
 /* Select sidebar elements */
 const sidebarList = document.querySelectorAll("#sidebar button")
-const sidebar     = document.querySelector("#sidebar");
+const sidebar = document.querySelector("#sidebar");
 
 /* Select notes elements */
 const noteForm = document.getElementById("note-form")
@@ -27,8 +27,8 @@ let selectedTabId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TAB_ID_KEY) ||
                     'notes'
 
 const LOCAL_STORAGE_SELECTED_NOTES_ID_KEY = 'notes.id'
-let notesList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SELECTED_NOTES_ID_KEY)) || []
-console.log(notesList);
+let notesList = 
+JSON.parse(localStorage.getItem(LOCAL_STORAGE_SELECTED_NOTES_ID_KEY)) || []
 
 /* When an item on the side bar is clicked on, direct the user to that tab */
 sidebar.addEventListener('click', e => {
@@ -67,6 +67,17 @@ noteForm.addEventListener('submit', e => {
   renderNotes()
 })
 
+let selectedNoteId = null
+notesContainer.addEventListener('click', e => {
+    if (e.target.id == 'delete') {
+        selectedNoteId = e.target.parentNode.parentNode.id;
+        notesList = notesList.filter(note => note.id != selectedNoteId)
+    }
+
+    save()
+    renderNotes()
+})
+
 /* function to create a new note object */
 function createNote(noteTitle, noteContent) {
   return {
@@ -76,6 +87,7 @@ function createNote(noteTitle, noteContent) {
   }
 }
 
+/* clear all elements in the container before re-rendering*/
 function clear(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild)
@@ -104,6 +116,7 @@ function render() {
   })
 }
 
+/* render notes tab separately */
 function renderNotes() {
   clear(notesContainer)  
   notesList.forEach(note => {
@@ -122,3 +135,5 @@ function renderNotes() {
 
 render()
 renderNotes()
+
+console.log(notesList); /* debugging */
