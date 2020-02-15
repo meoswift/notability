@@ -84,18 +84,24 @@ button:focus {
   width: 50%;
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder, #note-box::placeholder {
   font-weight: 550;
   color: rgb(149, 151, 151);
 }
 
-textarea::placeholder {
-  font-size: 90%;
+#note-box::placeholder {
+  font-size: 100%;
 }
 
 input {
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+#note-box {
+  font-size: 80%;
+  box-sizing: border-box;
+  resize: none;
 }
 
 input,textarea {

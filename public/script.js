@@ -46,6 +46,12 @@ logo.addEventListener('click', () => {
     render()
 })
 
+noteContent.addEventListener('input', e => {    
+    const el = e.target
+    el.style.height = el.scrollHeight + (el.offsetHeight - el.clientHeight) + 
+                      'px'
+})
+
 /* function to get values from form and add a note to noteList */
 noteForm.addEventListener('submit', e => {
   e.preventDefault()
