@@ -69,6 +69,8 @@ noteForm.addEventListener('submit', e => {
   noteTitle.value = null
   noteContent.value = null
 
+  noteContent.style.height = 'auto'
+
   save()
   renderNotes()
 })
