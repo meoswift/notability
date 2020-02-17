@@ -145,6 +145,7 @@ input,textarea {
 
 .card:hover {
   box-shadow: 0px 0px 4px rgba(111, 112, 112, 0.7);
+  cursor: pointer;
 }
 
 .card-title {
