@@ -76,9 +76,9 @@ noteForm.addEventListener('submit', e => {
 })
 
 let selectedNoteId = null
-notesContainer.addEventListener('click', e => {
-    if (e.target.id == 'delete') {
-        selectedNoteId = e.target.parentNode.parentNode.id;
+notesContainer.addEventListener('click', e => {  
+    if (e.target.id == 'bin') {
+        selectedNoteId = e.target.parentNode.parentNode.parentNode.id;
         notesList = notesList.filter(note => note.id != selectedNoteId)
     }
 

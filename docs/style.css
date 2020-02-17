@@ -138,9 +138,13 @@ input,textarea {
   margin-right: 1%;
 }
 
+.card:hover #bin {
+  cursor: pointer;
+  display: block;
+}
+
 .card:hover {
   box-shadow: 0px 0px 4px rgba(111, 112, 112, 0.7);
-  cursor: pointer;
 }
 
 .card-title {
@@ -175,5 +179,15 @@ input,textarea {
   display: none;
 }
 
+#bin {
+  opacity: .3;
+  width: 16px;
+  height: 16px;
+  transition: opacity .2s;
+}
+
+#bin:hover {
+  opacity: .7;
+}
 
 
