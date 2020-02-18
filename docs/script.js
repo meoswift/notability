@@ -128,7 +128,9 @@ notesContainer.addEventListener('click', e => {
           return;    
 
       console.log(selectedCard);
-      onClickNote();      
+      onClickNote();  
+      editNote.focus()
+    
     }
 
     save()
@@ -145,6 +147,8 @@ function onClickNote() {
       }
   })
 
+  console.log(editNote);
+  
   modal.appendChild(noteEdit)
   noteEdit.classList.remove("hidden")
   modal.style.display = 'flex'
