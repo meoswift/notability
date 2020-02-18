@@ -9,6 +9,7 @@
  */
 
 const logo = document.querySelector("#logo")
+const modal = document.querySelector("#modal-view")
 
 /* Select sidebar elements */
 const sidebarList = document.querySelectorAll("#sidebar button")
@@ -20,6 +21,13 @@ const noteTemplate = document.getElementById("note-template")
 const noteTitle = document.querySelector('[data-new-title]')
 const noteContent = document.querySelector('[data-new-note]')
 const notesContainer = document.getElementById("notes-area")
+
+/* Select opened notes elements */
+const noteEdit = document.getElementById("note-edit")
+const editTitle = document.getElementById("current-title")
+const editNote = document.getElementById("current-note")
+const closeEdit = document.getElementById("close")
+
 
 /* Use local storage to store which tab the user is on, default is notes */
 const LOCAL_STORAGE_SELECTED_TAB_ID_KEY = 'tab.selectedId'
@@ -46,11 +54,30 @@ logo.addEventListener('click', () => {
     render()
 })
 
+/* hide modal when it's clicked */
+modal.addEventListener('click', e => {
+    if (e.target.id == 'modal-view') {
+        saveNote(e)
+        modal.innerHTML = ''
+        modal.style.display = 'none'
+    } 
+    else return;
+})
+
+/* textarea auto grows for note inputting */
 noteContent.addEventListener('input', e => {    
+    autogrowTextarea(e)
+})
+
+editNote.addEventListener('input', e => {    
+    autogrowTextarea(e)
+})
+
+function autogrowTextarea(e) {
     const el = e.target
     el.style.height = el.scrollHeight + (el.offsetHeight - el.clientHeight) + 
                       'px'
-})
+}
 
 /* function to get values from form and add a note to noteList */
 noteForm.addEventListener('submit', e => {
@@ -75,17 +102,6 @@ noteForm.addEventListener('submit', e => {
   renderNotes()
 })
 
-let selectedNoteId = null
-notesContainer.addEventListener('click', e => {  
-    if (e.target.id == 'bin') {
-        selectedNoteId = e.target.parentNode.parentNode.parentNode.id;
-        notesList = notesList.filter(note => note.id != selectedNoteId)
-    }
-
-    save()
-    renderNotes()
-})
-
 /* function to create a new note object */
 function createNote(noteTitle, noteContent) {
   return {
@@ -93,6 +109,68 @@ function createNote(noteTitle, noteContent) {
       title: noteTitle,
       content: noteContent
   }
+}
+
+/* delete a note or open a note to modal view */
+let selectedNoteId = null
+let selectedCard = null
+notesContainer.addEventListener('click', e => {  
+    const currentTarget = e.target.classList
+    if (e.target.id == 'bin') {
+        selectedNoteId = e.target.parentNode.parentNode.parentNode.id;
+        notesList = notesList.filter(note => note.id != selectedNoteId)
+    } else {
+      if (currentTarget == 'card-text' || currentTarget == 'card-title')
+          selectedNoteId = e.target.parentNode.parentNode.id
+      else if (currentTarget == 'card-body')
+          selectedNoteId = e.target.parentNode.id    
+      else
+          return;    
+
+      console.log(selectedCard);
+      onClickNote();      
+    }
+
+    save()
+    renderNotes()
+})
+
+/* open note to edit */
+function onClickNote() {
+  console.log(noteEdit);
+  notesList.forEach(note => {
+      if (note.id == selectedNoteId) {
+          editTitle.value = note.title
+          editNote.value  = note.content
+      }
+  })
+
+  modal.appendChild(noteEdit)
+  noteEdit.classList.remove("hidden")
+  modal.style.display = 'flex'
+  modal.classList.add('no-scroll')
+}
+
+/* close edit mode and save the new note */
+closeEdit.addEventListener('click', saveNote)
+
+function saveNote(e) {
+    e.preventDefault()
+    if (e.target.id == 'close')
+        e.target.parentNode.style.height = 'auto'
+
+    notesList.forEach(note => {
+      if (note.id == selectedNoteId) {        
+          note.title = editTitle.value
+          note.content  = editNote.value
+      }
+  })
+
+  modal.innerHTML = ''
+  modal.style.display = 'none'
+
+  save()
+  renderNotes()
 }
 
 /* clear all elements in the container before re-rendering*/

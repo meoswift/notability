@@ -50,8 +50,17 @@
           <div id="archive-main">
             archive: to be implemented
           </div>
+          <section id="modal-view" class="hidden" touch-action="none"></section>      
         </div>
       </div>
+      <!-- expanded note when clicked -->
+      <div id="note-edit" class="hidden card-modal shadow bg-white rounded">
+          <form id="opened-note">
+                <input  placeholder="Title" id="current-title"><br>
+                <textarea placeholder="Take a note..." id="current-note"></textarea>
+                <button id="close">Close</button>
+            </form>
+        </div>
 
       <!-- TEMPLATES for cards -->
       <template id="note-template">
@@ -59,7 +68,7 @@
           <div class="card-body">
             <h5 class="card-title"></h5>
             <p class="card-text"></p>
-            <button id="delete">
+            <button class="delete">
               <img id="bin" class="hidden" src="images/bin.png" alt="">
             </button>
           </div>

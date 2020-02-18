@@ -104,7 +104,7 @@ input {
   resize: none;
 }
 
-input,textarea {
+input, textarea {
   border: none;
   outline: none;
   width: 100%;
@@ -138,13 +138,34 @@ input,textarea {
   margin-right: 1%;
 }
 
+.card-modal {
+  width: 40vw;
+  height: 30vh;
+  margin-top: 10%;
+  box-shadow: 0px 0px 5px rgba(111, 112, 112, 0.7);
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.2s;
+  animation-name: zoom;
+  animation-duration: 0.2s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
 .card:hover #bin {
   cursor: pointer;
   display: block;
 }
 
 .card:hover {
-  box-shadow: 0px 0px 4px rgba(111, 112, 112, 0.7);
+  box-shadow: 0px 0px 5px rgba(111, 112, 112, 0.7);
   cursor: pointer;
 }
 
@@ -162,18 +183,29 @@ input,textarea {
   padding: 15px !important;
 }
 
-#delete {
+.delete {
   margin-left: 90%;
   padding: 0;
-  width: 1vw !important;
-  height: 100%;
-  font-size: 85%;
-  transition: font-size .2s;
+  height: 16px;
+  width: 16px;
 }
 
-#delete:hover {
+.delete:hover {
   background-color: white;
-  font-size: 100%;
+}
+
+#modal-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  background-color: rgba(230, 230, 230, 0.856);
+  z-index: 2;
+
+  display: none;
+  justify-content: center;
 }
 
 .hidden {
@@ -191,4 +223,29 @@ input,textarea {
   opacity: .7;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
+#current-note {
+  height: 14vh;
+  resize: none;
+}
+
+#close {
+  color: rgb(149, 151, 151);
+  width: 20px;
+  font-weight: 550;
+  margin-left: 85%;
+}
+
+#current-title, #current-note {
+  padding-top: 2%;
+  padding-left: 2%;
+}
+
+#close:hover {
+  color: rgb(29, 29, 29);
+  background-color: white;
+}
 
