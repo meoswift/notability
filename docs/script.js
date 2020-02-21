@@ -10,8 +10,7 @@
 
 const logo = document.getElementById("logo")
 const modal = document.getElementById("modal-view")
-const pinLabel = document.querySelector(".pin-type")
-const othersLabel = document.querySelector(".others-type")
+const archiveLabel = document.querySelector(".archive-type")
 
 /* Select sidebar elements */
 const sidebarList = document.querySelectorAll("#sidebar button")

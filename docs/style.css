@@ -4,7 +4,6 @@ body {
 }
 
 #navbar {
-  background-color: #F1AF0D;
   position: fixed;
   z-index: -1;
   top: 0;
@@ -26,7 +25,7 @@ body {
 }
 
 #logo:hover {
-  color: #F1AF0D;
+  color: rgb(74, 147, 189);
   cursor: pointer;
   transition: .2s;
 }
@@ -68,7 +67,7 @@ button:focus {
 }
 
 .clicked, .clicked:hover {
-  background-color: #FEEFC3;
+  background-color: rgb(188, 221, 240);
   border-radius: 10px;
 }
 
@@ -262,4 +261,10 @@ input, textarea {
 #close:hover {
   color: rgb(29, 29, 29);
   background-color: white;
+}
+
+.center-type {
+  text-align: center;
+  color: rgb(106, 109, 110);
+  font-size: 1.25em;
 }

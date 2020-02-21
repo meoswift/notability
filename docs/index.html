@@ -4,15 +4,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="script.js" charset="utf-8" defer></script>
     <link rel="icon" href="images/elephant.png">
-    <link 
-      rel="stylesheet" 
+    <script src="script.js" charset="utf-8" defer></script>
+    <link rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
       crossorigin="anonymous">
-      <link rel="stylesheet" href="style.css">
-      <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap" rel="stylesheet">
     <title>Jumbo Notes</title>
   </head>
   <body>
@@ -55,12 +54,13 @@
           </div>
           <!-- archive tab main -->
           <div id="archive-main">
-              <p class="text-muted others-type">Archived notes</p>
+              <p class="center-type">Your archived notes appear here</p>
               <div class="card-columns" id="archive-area"></div>
           </div>
           <!-- bin tab main -->
           <div id="trash-main">
-              <p>bin: to be implemented</p>
+              <p class="center-type">Notes in recycled bin</p>
+              <p>to be implemented</p>
               <div class="card-columns" id="trash-area"></div>
           </div>
       </div>
@@ -82,7 +82,7 @@
             <h5 class="card-title"></h5>
             <p class="card-text"></p>
             <div class="outer">
-              <button class="function inline"><img id="pin" class="hidden" src="images/pin.svg"></button>
+              <button class="function inline"><img data-toggle="tooltip" title="Hooray!" id="pin" class="hidden" src="images/pin.svg"></button>
               <button class="function inline"><img id="color" class="hidden" src="images/paint.png"></button>
               <button class="function inline"><img id="box" class="hidden" src="images/archive.png"></button>
               <button class="function inline"><img id="bin" class="hidden" src="images/bin.png"></button>
