@@ -1,4 +1,4 @@
-# notability - Guggle Kip
+# notability - Jumbo Notes
 
 Basically, a Google Keep clone. 
 (using HTML, CSS, JS)
