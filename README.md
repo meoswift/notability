@@ -9,4 +9,3 @@ Todo:
 3. Changeable background color
 
 ![image](docs/images/jumbo-notes.png)
-
