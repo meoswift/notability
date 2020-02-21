@@ -303,4 +303,3 @@ function myFunction() {
 }
 
 console.log(notesList) /* debugging */
-
