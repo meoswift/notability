@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script.js" charset="utf-8" defer></script>
     <link rel="icon" href="images/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
@@ -40,9 +41,9 @@
                 </div>
               </form>
               <br>
-              <p class="text-muted">Pinned</p>
+              <p class="text-muted pin-type">Pinned</p>
               <div class="card-columns" id="pinned-area"></div>
-              <p class="text-muted">Others</p>
+              <p class="text-muted others-type">Others</p>
               <div class="card-columns" id="notes-area"></div>
           </div>
           <!-- labels tab main -->
@@ -51,11 +52,11 @@
           </div>
           <!-- archive tab main -->
           <div id="archive-main">
-            archive: to be implemented
+              <p class="text-muted others-type">Archive</p>
+              <div class="card-columns" id="archive-area"></div>
           </div>
-          <section id="modal-view" class="hidden" touch-action="none"></section>      
-        </div>
       </div>
+      <section id="modal-view" class="hidden" touch-action="none"></section>      
       <!-- expanded note when clicked -->
       <div id="note-edit" class="hidden card-modal shadow bg-white rounded">
           <form id="opened-note">
@@ -63,7 +64,8 @@
                 <textarea placeholder="Take a note..." id="current-note"></textarea>
                 <button id="close">Close</button>
             </form>
-        </div>
+      </div>
+    </div>
 
       <!-- TEMPLATE for notes -->
       <template id="note-template">
@@ -72,8 +74,11 @@
             <h5 class="card-title"></h5>
             <p class="card-text"></p>
             <div class="outer">
-              <button class="pinned inline"><img id="pin" class="hidden" src="images/pin.png"></button>
-              <button class="delete inline"><img id="bin" class="hidden" src="images/bin.png"></button>
+              <button class="function inline"><img id="pin" class="hidden" src="images/pin.svg"></button>
+              <button class="function inline"><img id="color" class="hidden" src="images/palette.svg"></button>
+              <button class="function inline"><img id="box" class="hidden" src="images/archive.svg"></button>
+              <button class="function inline"><img id="bin" class="hidden" src="images/bin.png"></button>
+    
             </div>
           </div>
         </div>

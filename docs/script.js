@@ -8,8 +8,10 @@
  *
  */
 
-const logo = document.querySelector("#logo")
-const modal = document.querySelector("#modal-view")
+const logo = document.getElementById("logo")
+const modal = document.getElementById("modal-view")
+const pinLabel = document.querySelector(".pin-type")
+const othersLabel = document.querySelector(".others-type")
 
 /* Select sidebar elements */
 const sidebarList = document.querySelectorAll("#sidebar button")
@@ -28,8 +30,11 @@ const editTitle = document.getElementById("current-title")
 const editNote = document.getElementById("current-note")
 const closeEdit = document.getElementById("close")
 
-/* Selected pinned notes elements */
+/* Select pinned notes elements */
 const pinnedContainer = document.getElementById("pinned-area")
+
+/* Select archived notes elements */
+const archiveContainer = document.getElementById("archive-area")
 
 /* Use local storage to store which tab the user is on, default is notes */
 const LOCAL_STORAGE_SELECTED_TAB_ID_KEY = 'tab.selectedId'
@@ -109,6 +114,7 @@ function createNote(noteTitle, noteContent) {
   return {
       id: Date.now().toString(),
       pinned: false,
+      archived: false,
       title: noteTitle,
       content: noteContent
   }
@@ -126,15 +132,22 @@ pinnedContainer.addEventListener('click', e => {
     noteDeletePinEdit(e)
 })
 
+archiveContainer.addEventListener('click', e => {
+    noteDeletePinEdit(e)
+})
+
 function noteDeletePinEdit(e) {
     const currentTarget = e.target.classList
+    selectedNoteId = e.target.parentNode.parentNode.parentNode.parentNode.id    
+
     if (e.target.id == 'bin') {
-        selectedNoteId = e.target.parentNode.parentNode.parentNode.parentNode.id
         notesList = notesList.filter(note => note.id != selectedNoteId)
     } 
     else if (e.target.id == 'pin') {
-        selectedNoteId = e.target.parentNode.parentNode.parentNode.parentNode.id
-        pinToggleNote()
+        togglePin()
+    }
+    else if (e.target.id == 'box') {
+        toggleArchive()
     }
     else {
         if (currentTarget == 'card-text' || currentTarget == 'card-title')
@@ -152,14 +165,28 @@ function noteDeletePinEdit(e) {
     renderNotes()
 }
 
-function pinToggleNote() {
+/* archive and unarchive a note */
+function toggleArchive() {
     notesList.forEach(note => {
-        console.log(note.pinned)
+      if (note.id == selectedNoteId) {
+          if (note.archived == false)
+              note.archived = true
+          else
+              note.archived = false
+      }
+      console.log("archive is " + note.archived)
+
+    })
+}
+
+/* pin and unpin a note */
+function togglePin() {
+    notesList.forEach(note => {
         if (note.id == selectedNoteId) {
             if (note.pinned == false)
                 note.pinned = true
             else
-                note.pinned = false;
+                note.pinned = false
         }
     })
 }
@@ -182,6 +209,7 @@ function onClickNote() {
 /* close edit mode and save the new note */
 closeEdit.addEventListener('click', saveNote)
 
+/* save note after editing */
 function saveNote(e) {
     e.preventDefault()
     if (e.target.id == 'close')
@@ -211,7 +239,8 @@ function clear(element) {
 /* save everything to local storage */
 function save() {
   localStorage.setItem(LOCAL_STORAGE_SELECTED_TAB_ID_KEY, selectedTabId)
-  localStorage.setItem(LOCAL_STORAGE_SELECTED_NOTES_ID_KEY, JSON.stringify(notesList))
+  localStorage.setItem(LOCAL_STORAGE_SELECTED_NOTES_ID_KEY, 
+                        JSON.stringify(notesList))
 }
 
 /* render data to the user interface */
@@ -234,28 +263,42 @@ function render() {
 function renderNotes() {
   clear(notesContainer)  
   clear(pinnedContainer)
+  clear(archiveContainer)
   notesList.forEach(note => {
       const noteElement = document.importNode(noteTemplate.content, true)
       const noteCard = noteElement.querySelector(".card")
       const noteTitle = noteElement.querySelector(".card-title")
       const noteContent = noteElement.querySelector(".card-text")
-      
+      const pinLogo = noteElement.getElementById("pin")
 
       noteCard.id = note.id
       noteTitle.append(note.title)
       noteContent.append(note.content)
       
+      /* if note is pinned, put it into pinned area */
       if (note.pinned == false) { 
           notesContainer.prepend(noteElement)
       }
-      else {
+      else if (note.pinned == true) {          
+          pinLogo.src = 'images/unpin.svg'          
           pinnedContainer.prepend(noteElement)
       }
+      // else if (note.archived == false) {
+      //     notesContainer.prepend("hi")
+      // }
+      // else if (note.archived == true) {
+      //     archiveContainer.prepend("hello")     
+      // }
   })
 }
 
 render()
 renderNotes()
+
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
 
 console.log(notesList) /* debugging */
 
