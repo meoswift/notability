@@ -10,15 +10,14 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
       crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>Guggle Kip</title>
+      <link rel="stylesheet" href="style.css">
+    <title>JumboNote</title>
   </head>
   <body>
     <div id="body-box">
       <!-- sidebar tabs -->
       <div id="sidebar">
-        <h2 id="logo">💡guggle keep :)</h2><br>
+        <h2 id="logo">JumboNote 🐘</h2><br>
         <!-- notes tab -->
         <div><button id="notes">Notes</button><hr></div>
         <small class="text-muted">Labels</small>
@@ -41,6 +40,9 @@
                 </div>
               </form>
               <br>
+              <p class="text-muted">Pinned</p>
+              <div class="card-columns" id="pinned-area"></div>
+              <p class="text-muted">Others</p>
               <div class="card-columns" id="notes-area"></div>
           </div>
           <!-- labels tab main -->
@@ -63,15 +65,16 @@
             </form>
         </div>
 
-      <!-- TEMPLATES for cards -->
+      <!-- TEMPLATE for notes -->
       <template id="note-template">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"></h5>
             <p class="card-text"></p>
-            <button class="delete">
-              <img id="bin" class="hidden" src="images/bin.png" alt="">
-            </button>
+            <div class="outer">
+              <button class="pinned inline"><img id="pin" class="hidden" src="images/pin.png"></button>
+              <button class="delete inline"><img id="bin" class="hidden" src="images/bin.png"></button>
+            </div>
           </div>
         </div>
       </template>

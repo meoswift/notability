@@ -28,6 +28,8 @@ const editTitle = document.getElementById("current-title")
 const editNote = document.getElementById("current-note")
 const closeEdit = document.getElementById("close")
 
+/* Selected pinned notes elements */
+const pinnedContainer = document.getElementById("pinned-area")
 
 /* Use local storage to store which tab the user is on, default is notes */
 const LOCAL_STORAGE_SELECTED_TAB_ID_KEY = 'tab.selectedId'
@@ -40,11 +42,11 @@ JSON.parse(localStorage.getItem(LOCAL_STORAGE_SELECTED_NOTES_ID_KEY)) || []
 
 /* When an item on the side bar is clicked on, direct the user to that tab */
 sidebar.addEventListener('click', e => {
-  if (e.target.tagName.toLowerCase() === 'button') {
-      selectedTabId = e.target.id   
-  }  
-  save()
-  render()
+    if (e.target.tagName.toLowerCase() === 'button') {
+        selectedTabId = e.target.id   
+    }  
+    save()
+    render()
 })
 
 /* If user clickes the logo, redirects to Notes tab */
@@ -106,6 +108,7 @@ noteForm.addEventListener('submit', e => {
 function createNote(noteTitle, noteContent) {
   return {
       id: Date.now().toString(),
+      pinned: false,
       title: noteTitle,
       content: noteContent
   }
@@ -114,32 +117,55 @@ function createNote(noteTitle, noteContent) {
 /* delete a note or open a note to modal view */
 let selectedNoteId = null
 let selectedCard = null
+
 notesContainer.addEventListener('click', e => {  
+    noteDeletePinEdit(e)
+})
+
+pinnedContainer.addEventListener('click', e => {
+    noteDeletePinEdit(e)
+})
+
+function noteDeletePinEdit(e) {
     const currentTarget = e.target.classList
     if (e.target.id == 'bin') {
-        selectedNoteId = e.target.parentNode.parentNode.parentNode.id;
+        selectedNoteId = e.target.parentNode.parentNode.parentNode.parentNode.id
         notesList = notesList.filter(note => note.id != selectedNoteId)
-    } else {
-      if (currentTarget == 'card-text' || currentTarget == 'card-title')
-          selectedNoteId = e.target.parentNode.parentNode.id
-      else if (currentTarget == 'card-body')
-          selectedNoteId = e.target.parentNode.id    
-      else
-          return;    
+    } 
+    else if (e.target.id == 'pin') {
+        selectedNoteId = e.target.parentNode.parentNode.parentNode.parentNode.id
+        pinToggleNote()
+    }
+    else {
+        if (currentTarget == 'card-text' || currentTarget == 'card-title')
+            selectedNoteId = e.target.parentNode.parentNode.id
+        else if (currentTarget == 'card-body')
+            selectedNoteId = e.target.parentNode.id    
+        else
+            return  
 
-      console.log(selectedCard);
-      onClickNote();  
-      editNote.focus()
-    
+        onClickNote();  
+        editNote.focus()
     }
 
     save()
     renderNotes()
-})
+}
+
+function pinToggleNote() {
+    notesList.forEach(note => {
+        console.log(note.pinned)
+        if (note.id == selectedNoteId) {
+            if (note.pinned == false)
+                note.pinned = true
+            else
+                note.pinned = false;
+        }
+    })
+}
 
 /* open note to edit */
-function onClickNote() {
-  console.log(noteEdit);
+function onClickNote() {  
   notesList.forEach(note => {
       if (note.id == selectedNoteId) {
           editTitle.value = note.title
@@ -147,8 +173,6 @@ function onClickNote() {
       }
   })
 
-  console.log(editNote);
-  
   modal.appendChild(noteEdit)
   noteEdit.classList.remove("hidden")
   modal.style.display = 'flex'
@@ -168,7 +192,7 @@ function saveNote(e) {
           note.title = editTitle.value
           note.content  = editNote.value
       }
-  })
+    })
 
   modal.innerHTML = ''
   modal.style.display = 'none'
@@ -209,21 +233,29 @@ function render() {
 /* render notes tab separately */
 function renderNotes() {
   clear(notesContainer)  
+  clear(pinnedContainer)
   notesList.forEach(note => {
       const noteElement = document.importNode(noteTemplate.content, true)
       const noteCard = noteElement.querySelector(".card")
       const noteTitle = noteElement.querySelector(".card-title")
       const noteContent = noteElement.querySelector(".card-text")
+      
 
       noteCard.id = note.id
       noteTitle.append(note.title)
       noteContent.append(note.content)
-
-      notesContainer.prepend(noteElement)
+      
+      if (note.pinned == false) { 
+          notesContainer.prepend(noteElement)
+      }
+      else {
+          pinnedContainer.prepend(noteElement)
+      }
   })
 }
 
 render()
 renderNotes()
 
-console.log(notesList); /* debugging */
+console.log(notesList) /* debugging */
+

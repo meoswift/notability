@@ -21,6 +21,7 @@ body {
 
 #logo {
   text-align: center;
+  font-size: 2.25em;
 }
 
 #logo:hover {
@@ -160,7 +161,7 @@ input, textarea {
   to {transform:scale(1)}
 }
 
-.card:hover #bin {
+.card:hover #bin, .card:hover #pin {
   cursor: pointer;
   display: block;
 }
@@ -184,15 +185,18 @@ input, textarea {
   padding: 15px !important;
 }
 
-.delete {
-  margin-left: 90%;
+.delete, .pinned {
   padding: 0;
   height: 16px;
   width: 16px;
 }
 
-.delete:hover {
+.delete:hover, .pinned:hover {
   background-color: white;
+}
+
+.pinned {
+  margin-left: 0;
 }
 
 #modal-view {
@@ -213,14 +217,28 @@ input, textarea {
   display: none;
 }
 
-#bin {
+.outer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inline {
+  display: inline-block;
+}
+
+#bin, #pin {
   opacity: .3;
   width: 16px;
   height: 16px;
   transition: opacity .2s;
 }
 
-#bin:hover {
+#pin {
+  width: 16px;
+  height: 16px;
+}
+
+#bin:hover, #pin:hover {
   opacity: .7;
 }
 
