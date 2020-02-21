@@ -297,9 +297,4 @@ function renderNotes() {
 render()
 renderNotes()
 
-function myFunction() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
-}
-
 console.log(notesList) /* debugging */

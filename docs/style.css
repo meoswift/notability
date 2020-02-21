@@ -1,5 +1,6 @@
 body {
   margin: 2% 0 0 2%;
+  font-family: 'Helvetica Neue', helvetica;
 }
 
 #navbar {
@@ -21,7 +22,7 @@ body {
 
 #logo {
   text-align: center;
-  font-size: 2.3em;
+  font-size: 2em;
 }
 
 #logo:hover {

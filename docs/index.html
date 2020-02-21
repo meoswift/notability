@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script.js" charset="utf-8" defer></script>
-    <link rel="icon" href="images/favicon.png">
+    <link rel="icon" href="images/elephant.png">
     <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
@@ -13,13 +13,13 @@
       crossorigin="anonymous">
       <link rel="stylesheet" href="style.css">
       <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap" rel="stylesheet">
-    <title>JumboNote</title>
+    <title>Jumbo Notes</title>
   </head>
   <body>
     <div id="body-box">
       <!-- sidebar tabs -->
       <div id="sidebar">
-        <h2 id="logo">Jumbo Note 🐘</h2><br>
+        <h2 id="logo">Jumbo Notes 🐘</h2><br>
         <!-- notes tab -->
         <div><button id="notes">Notes</button><hr></div>
         <small class="text-muted">Labels</small>
@@ -28,6 +28,8 @@
           <button id="labels">Edit labels</button><hr>
           <!-- archive tab -->
           <button id="archive">Archive</button>
+          <!-- bin tab -->
+          <button id="trash">Bin</button>
         </div>
       </div>
       <!-- main for each tab -->
@@ -42,7 +44,7 @@
                 </div>
               </form>
               <br>
-              <p class="text-muted pin-type">Pinned</p>
+              <p class="text-muted pin-type">Pinned notes</p>
               <div class="card-columns" id="pinned-area"></div>
               <p class="text-muted others-type">Others</p>
               <div class="card-columns" id="notes-area"></div>
@@ -53,8 +55,13 @@
           </div>
           <!-- archive tab main -->
           <div id="archive-main">
-              <p class="text-muted others-type">Archive</p>
+              <p class="text-muted others-type">Archived notes</p>
               <div class="card-columns" id="archive-area"></div>
+          </div>
+          <!-- bin tab main -->
+          <div id="trash-main">
+              <p>bin: to be implemented</p>
+              <div class="card-columns" id="trash-area"></div>
           </div>
       </div>
       <section id="modal-view" class="hidden" touch-action="none"></section>      
