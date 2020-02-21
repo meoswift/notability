@@ -8,5 +8,5 @@ Todo:
 2. Archived notes
 3. Changeable background color
 
-![image](docs/images/keep.png)
+![image](docs/images/jumbo-notes.png)
 
