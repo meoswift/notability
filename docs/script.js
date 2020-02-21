@@ -270,25 +270,27 @@ function renderNotes() {
       const noteTitle = noteElement.querySelector(".card-title")
       const noteContent = noteElement.querySelector(".card-text")
       const pinLogo = noteElement.getElementById("pin")
+      const archiveLogo = noteElement.getElementById("box")
 
       noteCard.id = note.id
       noteTitle.append(note.title)
       noteContent.append(note.content)
       
       /* if note is pinned, put it into pinned area */
-      if (note.pinned == false) { 
+      if (note.pinned == false && note.archived == false) { 
           notesContainer.prepend(noteElement)
       }
-      else if (note.pinned == true) {          
+      else if (note.pinned == true && note.archived == false) {          
           pinLogo.src = 'images/unpin.svg'          
           pinnedContainer.prepend(noteElement)
+      } 
+      else if (note.pinned == false && note.archived == false) {
+           notesContainer.prepend(noteElement)
       }
-      // else if (note.archived == false) {
-      //     notesContainer.prepend("hi")
-      // }
-      // else if (note.archived == true) {
-      //     archiveContainer.prepend("hello")     
-      // }
+      else if (note.pinned == false && note.archived == true) {
+          archiveLogo.src = 'images/unarchive.png'      
+          archiveContainer.prepend(noteElement)     
+      }
   })
 }
 
