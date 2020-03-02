@@ -12,5 +12,6 @@ Working functionalities:
 Todo:
 1. Changeable background color
 2. Binned notes
+3. Notes with Labels
 
 ![image](docs/images/jumbo-notes.png)
