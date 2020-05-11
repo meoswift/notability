@@ -1,6 +1,6 @@
 # notability - Jumbo Notes
 
-Basically, a Google Keep clone. 
+Basically, a Google Keep clone made from scratch :-)
 (using HTML, CSS, JS)
 
 Working functionalities:
