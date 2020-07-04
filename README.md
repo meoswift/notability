@@ -15,4 +15,4 @@ Todo:
 3. Notes with Labels
 4. Update UI using Material Design 
 
-![image](docs/images/jumbo-notes.png)
+![image](/images/jumbo-notes.png)
